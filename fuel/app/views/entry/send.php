@@ -1,0 +1,1 @@
+<p class="entry__txt">投稿が完了しました。</p>
