@@ -449,7 +449,7 @@ return array(
 	 * -------------------------------------------------------------------------
 	 */
 
-	// 'always_load' => array(
+	'always_load' => array(
 		/**
 		 * ---------------------------------------------------------------------
 		 *  These packages are loaded on Fuel's startup.
@@ -468,7 +468,7 @@ return array(
 		 */
 
 		'packages' => array(
-			'orm',
+			// 'orm',
 			'auth',
 		),
 
@@ -532,5 +532,5 @@ return array(
 		 */
 
 		// 'language' => array(),
-	// ),
+	),
 );

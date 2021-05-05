@@ -1,38 +1,41 @@
-# FuelPHP
+## 考察
 
-* Version: 1.8.2
-* [Website](https://fuelphp.com/)
-* [Release Documentation](https://fuelphp.com/docs)
-* [Release API browser](https://fuelphp.com/api)
-* [Development branch Documentation](https://fuelphp.com/dev-docs)
-* [Development branch API browser](https://fuelphp.com/dev-api)
-* [Support Forum](https://forums.fuelphp.com) for comments, discussion and community support
+## 開発環境
 
-## Description
+- MacOS 10.13.6
+- PHP: 7.4.8
+- FuelPHP: 1.8.2
+- Apache 2.4.6
+- MySQL 8.0.23
 
-FuelPHP is a fast, lightweight PHP 5.4+ framework. In an age where frameworks are a dime a dozen, we believe that FuelPHP will stand out in the crowd. It will do this by combining all the things you love about the great frameworks out there, while getting rid of the bad.
+## 実装に費やした時間
 
-FuelPHP is fully PHP 7.3 compatible.
+作業後に更新する。
 
-## More information
+- 事前学習 15h
+- エントリーページ実装 10h
+- 管理ページ
+  - トップページ 5h
+  - エントリー一覧 5h
+  - 管理者ページ 0h
 
-For more detailed information, see the [development wiki](https://github.com/fuelphp/fuelphp/wiki).
+## 実装中に問題となったこと・工夫したところ
 
-## Development Team
+- 誕生日を日付から bouble 型に変換する方法を調査中。
+- 一般ページの確認画面にて、戻るボタンを押した際に都道府県と生年月日が初期状態になってします。<br>(おそらく Javascript で制御しているから？)
+- 都道府県とメルマガの値と名前を結びつけるように SQL を組むようにする。
 
-* Harro Verton - Project Manager, Developer ([http://wanwizard.eu/](http://wanwizard.eu/))
-* Emlyn West - Core Developer, ORM
+## 改善点
 
-### Want to join?
+更新中
 
-The FuelPHP development team is always looking for new team members, who are willing to help lift the framework to the next level, and have the commitment to not only produce awesome code, but also great documentation, and support to our users.
+## どのような動作テストを行ったか
 
-You can not apply for membership. Start by sending in pull-requests, work on outstanding feature requests or bugs, and become active in the #fuelphp IRC channel. If your skills are up to scratch, we will notice you, and will ask you to become a team member.
+更新中
 
-### Alumni
+## 参考資料又は参考サイト
 
-* Márk Sági-Kazár - Developer
-* Frank de Jonge - Developer ([http://frenky.net/](http://frenky.net/))
-* Jelmer Schreuder - Developer ([http://jelmerschreuder.nl/](http://jelmerschreuder.nl/))
-* Phil Sturgeon - Developer ([http://philsturgeon.co.uk](http://philsturgeon.co.uk))
-* Dan Horrigan - Founder, Developer ([http://dhorrigan.com](http://dhorrigan.com))
+- [FuelPHP 公式ドキュメント](http://fuelphp.jp/docs/1.9/);
+- 初めてのフレームワークとしての FuelPHP 改訂版
+- [CodeIgniter3 を使ってる環境を PHP7.4 にしたらエラーが出た](https://lightwill.hatenablog.com/entry/2020/09/11/151914)
+- [FuelPHP の認証機能「Auth パッケージ」を利用してみる](https://helog.jp/framework/fuelphp-auth/)

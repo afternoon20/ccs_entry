@@ -11,7 +11,19 @@ class Create_ccs_entry
 			// 'entry_id' => array('constraint' => '11', 'null' => false, 'type' => 'int'),
 			'entry_name' => array('constraint' => 40, 'null' => false, 'type' => 'varchar'),
 			'entry_ruby' => array('constraint' => 40, 'null' => false, 'type' => 'varchar'),
-			'entry_register_time' => array('constraint' => '11', 'null' => true, 'type' => 'int', 'unsigned' => true),
+			'entry_birthday' => array('null' => false, 'type' => 'double','default' => 0),
+			'entry_prefecture' => array('null' => false, 'type' => 'smallint','default' => 0),
+			'entry_address' => array('constraint' => 255, 'null' => false, 'type' => 'varchar'),
+			'entry_telephone_h' => array('constraint' => 5, 'null' => false, 'type' => 'varchar'),
+			'entry_telephone_m' => array('constraint' => 4, 'null' => false, 'type' => 'varchar'),
+			'entry_telephone_l' => array('constraint' => 4, 'null' => false, 'type' => 'varchar'),
+			'entry_email' => array('constraint' => 255, 'null' => false, 'type' => 'varchar'),
+			'entry_magazine' => array('null' => false, 'type' => 'smallint','default' => 0),
+			'entry_magazine_type' => array('null' => false, 'type' => 'smallint','default' => 0),
+			'entry_transfer' => array('null' => false, 'type' => 'smallint','default' => 0),
+			'entry_magazine_type' => array('null' => false, 'type' => 'smallint','default' => 0),
+			'entry_transfer' => array('null' => false, 'type' => 'smallint','default' => 0),
+			'entry_register_time' => array('constraint' => '11', 'null' => false, 'type' => 'int', 'unsigned' => true),
 		), array('entry_id'));
 	}
 

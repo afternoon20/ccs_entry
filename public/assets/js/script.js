@@ -114,8 +114,8 @@
 
 // マガジン購読の制御
 (function () {
-  var magazine = $('[name=magazine]');
-  var magazine_type = $('[name=magazine-type]');
+  var magazine = $('[name=entry_magazine]');
+  var magazine_type = $('[name=entry_magazine_type]');
   magazine_type.attr('disabled', 'disabled');
 
   magazine.on('change', function () {

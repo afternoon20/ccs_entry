@@ -57,8 +57,17 @@ class Controller_Entry extends Controller_Template{
 			// データベース登録
 
 			$form = array();
-      $form['entry_name'] = Input::post('name');
-      $form['entry_ruby'] = Input::post('kana');
+      $form['entry_name'] = Input::post('entry_name');
+      $form['entry_ruby'] = Input::post('entry_ruby');
+			// TODO:誕生日の処理
+      $form['entry_prefecture'] = intval(Input::post('entry_prefecture'));
+      $form['entry_address'] = Input::post('entry_address');
+      $form['entry_telephone_h'] = Input::post('entry_telephone_h');
+      $form['entry_telephone_m'] = Input::post('entry_telephone_m');
+      $form['entry_telephone_l'] = Input::post('entry_telephone_l');
+      $form['entry_email'] = Input::post('entry_email');
+      $form['entry_magazine'] = intval(Input::post('entry_magazine'));
+      $form['entry_magazine_type'] = intval(Input::post('entry_magazine_type'));
 
 			$ccs_entry = Model_Entry::forge();
 			$ccs_entry->set($form);
@@ -68,6 +77,8 @@ class Controller_Entry extends Controller_Template{
 			$this->template->content = View::forge('entry/send');
 
 		}catch(Exception $e){
+			echo $e;
+			exit;
 			$this->template->title = '投稿失敗！';
 			$this->template->content = View::forge('entry/send');
 		}	
@@ -78,25 +89,67 @@ class Controller_Entry extends Controller_Template{
 	{
 		$val = Validation::forge();
 		
-		$val->add('name', '名前')
+		$val->add('entry_name', '名前')
 			->add_rule('trim')
 			->add_rule('required')
-			->add_rule('max_length', 50);
+			->add_rule('max_length', 40);
 
-		$val->add('kana', 'ふりがな')
+		$val->add('entry_ruby', 'ふりがな')
 			->add_rule('trim')
 			->add_rule('required')
-			->add_rule('max_length', 50);
+			->add_rule('max_length', 40);
 		
-		// $val->add('email', 'メールアドレス')
-		// 	->add_rule('trim')
-		// 	->add_rule('required')
-		// 	->add_rule('max_length', 100)
-		// 	->add_rule('valid_email');
+		$val->add('year', '年')
+			->add_rule('trim')
+			->add_rule('required');
+
+		$val->add('month', '月')
+			->add_rule('trim')
+			->add_rule('required');
 		
-		// $val->add('comment', 'コメント')
-		// 	->add_rule('required')
-		// 	->add_rule('max_length', 400);
+		$val->add('date', '日')
+			->add_rule('trim')
+			->add_rule('required');
+		
+		$val->add('entry_prefecture', '都道府県')
+			->add_rule('trim')
+			->add_rule('required')
+			->add_rule('numeric_max', 47);
+
+
+		$val->add('entry_address', '住所')
+			->add_rule('trim')
+			->add_rule('required')
+			->add_rule('max_length', 255);
+		
+		$val->add('entry_telephone_h', '電話番号(上桁)')
+			->add_rule('trim')
+			->add_rule('required')
+			->add_rule('max_length', 5);
+		
+		$val->add('entry_telephone_m', '電話番号(中桁)')
+			->add_rule('trim')
+			->add_rule('required')
+			->add_rule('max_length', 4);
+		
+		$val->add('entry_telephone_l', '電話番号(下桁)')
+			->add_rule('trim')
+			->add_rule('required')
+			->add_rule('max_length', 4);
+
+		
+		$val->add('entry_email', 'メールアドレス')
+			->add_rule('trim')
+			->add_rule('required')
+			->add_rule('max_length', 255);
+		
+		$val->add('entry_magazine', 'メルマガ購読')
+			->add_rule('trim')
+			->add_rule('required');
+		
+		$val->add('entry_magazine_type', 'メルマガのタイプ')
+			->add_rule('trim')
+			->add_rule('numeric_max', 1);
 		
 		return $val;
 	}
