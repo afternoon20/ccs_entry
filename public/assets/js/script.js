@@ -1,4 +1,4 @@
-(function () {
+$(function () {
   'use strict';
   window.addEventListener(
     'load',
@@ -25,107 +25,103 @@
     },
     false
   );
-})();
+});
 
-(function () {
-  // 現在の年月日を取得
-  var time = new Date();
-  var year = time.getFullYear();
-  var month = time.getMonth() + 1;
-  var date = time.getDate();
+// 生年月日の制御
+$(function () {
+  var year = $('#year');
+  var month = $('#month');
+  var date = $('#date');
+  var birthday = $('.birthday');
+  var entry_birthday = $('#entry_birthday');
+  var put_birthday;
 
-  // 選択された年月日を取得
-  var selected_year = document.getElementById('year').value;
-  var selected_month = document.getElementById('month').value;
+  put_birthday = year.val() + '-' + month.val() + '-' + date.val();
+  entry_birthday.val(put_birthday);
 
-  console.log(selected_year);
-
-  // 年(初期): 1900〜現在の年 の値を設定
-  var start_year = 1950;
-  for (var i = year; i >= start_year; i--) {
-    $('#year').append('<option value="' + i + '">' + i + '</option>');
-  }
-
-  // 月(初期): 1~12 の値を設定
-  var last_month = 12;
-  for (var j = 1; j <= last_month; j++) {
-    $('#month').append('<option value="' + j + '">' + j + '</option>');
-  }
-
-  // 日(初期): 1~31 の値を設定
-  var last_date = 31;
-  for (var k = 1; k <= last_date; k++) {
-    $('#date').append('<option value="' + k + '">' + k + '</option>');
-  }
-
-  // 月(変更)：選択された年に合わせて、適した月の値を選択肢にセットする
-  $('#year').change(function () {
-    selected_year = $('#year').val();
-
-    // 現在の年が選択された場合、月の選択肢は 1~現在の月 に設定
-    // それ以外の場合、1~12 に設定
-    last_month = 12;
-    if (selected_year == year) {
-      last_month = month;
-    }
-    $('#month').children('option').remove();
-    $('#month').append('<option value="' + 0 + '">--</option>');
-    for (var n = 1; n <= last_month; n++) {
-      $('#month').append('<option value="' + n + '">' + n + '</option>');
-    }
+  birthday.change(function () {
+    put_birthday = year.val() + '-' + month.val() + '-' + date.val();
+    entry_birthday.val(put_birthday);
   });
-
-  // 日(変更)：選択された年・月に合わせて、適した日の値を選択肢にセットする
-  $('#year,#month').change(function () {
-    selected_year = $('#year').val();
-    selected_month = $('#month').val();
-
-    // 現在の年・月が選択された場合、日の選択肢は 1~現在の日付 に設定
-    // それ以外の場合、各月ごとの最終日を判定し、1~最終日 に設定
-    if (selected_year == year && selected_month == month) {
-      last_date = date;
-    } else {
-      // 2月：日の選択肢は1~28日に設定
-      // ※ ただし、閏年の場合は29日に設定
-      if (selected_month == 2) {
-        if ((Math.floor(selected_year % 4 == 0) && Math.floor(selected_year % 100 != 0)) || Math.floor(selected_year % 400 == 0)) {
-          last_date = 29;
-        } else {
-          last_date = 28;
-        }
-
-        // 4, 6, 9, 11月：日の選択肢は1~30日に設定
-      } else if (selected_month == 4 || selected_month == 6 || selected_month == 9 || selected_month == 11) {
-        last_date = 30;
-
-        // 1, 3, 5, 7, 8, 10, 12月：日の選択肢は1~31日に設定
-      } else {
-        last_date = 31;
-      }
-    }
-
-    $('#date').children('option').remove();
-    $('#date').append('<option value="' + 0 + '">--</option>');
-    for (var m = 1; m <= last_date; m++) {
-      $('#date').append('<option value="' + m + '">' + m + '</option>');
-    }
-  });
-})();
+});
 
 // マガジン購読の制御
-(function () {
+$(function () {
   var magazine = $('[name=entry_magazine]');
   var magazine_type = $('[name=entry_magazine_type]');
-  magazine_type.attr('disabled', 'disabled');
-
+  if (magazine.val() != 1) {
+    magazine_type.val('');
+    magazine_type.attr('disabled', 'disabled');
+  }
   magazine.on('change', function () {
+    console.log(magazine.val());
     if (magazine.val() != 1) {
-      magazine_type.attr('disabled', 'disabled');
       magazine_type.val('');
+      magazine_type.attr('disabled', 'disabled');
     } else {
       magazine_type.removeAttr('disabled');
-      magazine_type.attr('required', 'required');
-      console.log(magazine);
     }
   });
-})();
+
+  //   magazine_type.attr('disabled', 'disabled');
+  //   if (magazine.val() != 1) {
+  //     magazine_type.attr('disabled', 'disabled');
+  //     magazine_type.val('');
+  //   } else {
+  //     magazine_type.removeAttr('disabled');
+  //     magazine_type.attr('required', 'required');
+  //   }
+  //   magazine.on('change', function () {
+  //     if (magazine.val() != 1) {
+  //       magazine_type.attr('disabled', 'disabled');
+  //       magazine_type.val('');
+  //     } else {
+  //       magazine_type.removeAttr('disabled');
+  //       magazine_type.attr('required', 'required');
+  //     }
+  //   });
+});
+
+// 登録日時の制御
+$(function () {
+  var reg_year = $('#reg-year');
+  var reg_month = $('#reg-month');
+  var reg_date = $('#reg-date');
+  var reg_hour = $('#reg-hour');
+  var reg_minute = $('#reg-minute');
+  var reg_sec = $('#reg-sec');
+
+  var register_time = $('.register-time');
+  var register = $('[name=entry_register_time]');
+  var put_register;
+
+  put_register = reg_year.val() + '-' + reg_month.val() + '-' + reg_date.val() + ' ' + reg_hour.val() + ':' + reg_minute.val() + ':' + reg_sec.val();
+  register.val(put_register);
+  console.log(put_register);
+
+  register_time.change(function () {
+    put_register = reg_year.val() + '-' + reg_month.val() + '-' + reg_date.val() + ' ' + reg_hour.val() + ':' + reg_minute.val() + ':' + reg_sec.val();
+    register.val(put_register);
+  });
+});
+
+// アコーディオン
+$(function () {
+  $('.entry-search__bottom').hide();
+  $('.fa-chevron-up').hide();
+  // $('.entry-search__bottom').first().show();
+
+  $('.entry-search').click(function () {
+    if ($(this).hasClass('accordion__top--active')) {
+      $(this).next('.entry-search__bottom').slideUp('fast');
+      $(this).removeClass('accordion__top--active');
+      $('.fa-chevron-down').show();
+      $('.fa-chevron-up').hide();
+    } else {
+      $(this).next('.entry-search__bottom').slideDown('fast');
+      $(this).addClass('accordion__top--active');
+      $('.fa-chevron-up').show();
+      $('.fa-chevron-down').hide();
+    }
+  });
+});

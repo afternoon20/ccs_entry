@@ -24,9 +24,14 @@
       <div class="inner">
         <nav class="navbar navbar-light">
           <span class="navbar-brand">Career Change Service System</span>
-          <?php echo Form::open(array('action' => 'system/admin/logout', 'method' => 'post','class'=>'form-inline')); ?>
-            <button class="btn btn-outline-primary" type="submit">ログアウト</button>
-          <?php echo Form::close(); ?>
+          <div class="navbar-left">
+            <?php if (Auth::check()) :?>
+            <?php echo Form::open(array('action' => 'system/admin/logout','class'=>'form-inline')); ?>
+              <p class="mr-lg-3">ログインユーザー：<?php //echo Auth::get_profile_fields() ?></p>
+              <button class="btn btn-outline-primary" type="submit">ログアウト</button>
+            <?php echo Form::close(); ?>
+            <?php endif; ?>
+          </div>
         </nav>
       </div>
       

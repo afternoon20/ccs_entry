@@ -4,19 +4,19 @@
           <?php endif; ?>
           </div>
           
-          <?php echo Form::open('entry/confirm'); ?>
+          <?php echo Form::open('entry/index'); ?>
           <div class="entry-form bg-light shadow">
             <!-- 名前 -->
             <div class="entry-form__item">
               <div class="row">
                 <div class="col-md-6">
                   <label for="entry_name" class="entry-form__ttl">名前</label>
-                 	<?php echo Form::input('entry_name', Input::post('entry_name'),array('class'=>'form-control')); ?>
+                 	<?php echo Form::input('entry_name', Input::post('entry_name'),array('class'=>'form-control entry-form__txt')); ?>
                   <div class="invalid-feedback">必須項目です。</div>
                 </div>
                 <div class="col-md-6">
                   <label for="entry_ruby" class="entry-form__ttl">ふりがな</label>
-                 	<?php echo Form::input('entry_ruby', Input::post('entry_ruby'),array('class'=>'form-control')); ?>
+                 	<?php echo Form::input('entry_ruby', Input::post('entry_ruby'),array('class'=>'form-control entry-form__txt')); ?>
                   <div class="invalid-feedback">必須項目です。</div>
                 </div>
               </div>
@@ -30,13 +30,11 @@
                   <?php
                     echo Form::select(
                       'year', 
-                      '---',
-                      array(
-                        '' => '---',
-                      ),
+                      Input::post('year'),
+                      YEARS,
                       array(
                         'id' => 'year',
-                        'class'=>'form-control',
+                        'class'=>'form-control birthday',
                       ),
                     );      
                   ?>
@@ -47,13 +45,11 @@
                   <?php
                     echo Form::select(
                       'month', 
-                      '---',
-                      array(
-                        '' => '---',
-                      ),
+                      Input::post('month'),
+                      MONTHS,
                       array(
                         'id' => 'month',
-                        'class'=>'form-control',
+                        'class'=>'form-control birthday',
                       ),
                     );      
                   ?>
@@ -64,13 +60,11 @@
                   <?php
                     echo Form::select(
                       'date', 
-                      '---',
-                      array(
-                        '' => '---',
-                      ),
+                      Input::post('date'),
+                      DATES,
                       array(
                         'id' => 'date',
-                        'class'=>'form-control',
+                        'class'=>'form-control birthday',
                       ),
                     );      
                   ?>
@@ -87,69 +81,18 @@
                     <?php
                     echo Form::select(
                       'entry_prefecture', 
-                      '---',
-                      array(
-                      '' => '都道府県を選択',
-                      '1' => '北海道',
-                      '2' => '青森県',
-                      '3' => '岩手県',
-                      '4' => '宮城県',
-                      '5' => '秋田県',
-                      '6' => '山形県',
-                      '7' => '福島県',
-                      '8' => '茨城県',
-                      '9' => '栃木県',
-                      '10' => '群馬県',
-                      '11' => '埼玉県',
-                      '千葉県' => '千葉県',
-                      '東京都' => '東京都',
-                      '神奈川県' => '神奈川県',
-                      '新潟県' => '新潟県',
-                      '富山県' => '富山県',
-                      '石川県' => '石川県',
-                      '福井県' => '福井県',
-                      '山梨県' => '山梨県',
-                      '長野県' => '長野県',
-                      '岐阜県' => '岐阜県',
-                      '静岡県' => '静岡県',
-                      '愛知県' => '愛知県',
-                      '三重県' => '三重県',
-                      '滋賀県' => '滋賀県',
-                      '京都府' => '京都府',
-                      '大阪府' => '大阪府',
-                      '兵庫県' => '兵庫県',
-                      '奈良県' => '奈良県',
-                      '和歌山県' => '和歌山県',
-                      '鳥取県' => '鳥取県',
-                      '島根県' => '島根県',
-                      '岡山県' => '岡山県',
-                      '広島県' => '広島県',
-                      '山口県' => '山口県',
-                      '徳島県' => '徳島県',
-                      '香川県' => '香川県',
-                      '愛媛県' => '愛媛県',
-                      '高知県' => '高知県',
-                      '福岡県' => '福岡県',
-                      '佐賀県' => '佐賀県',
-                      '長崎県' => '長崎県',
-                      '熊本県' => '熊本県',
-                      '大分県' => '大分県',
-                      '宮崎県' => '宮崎県',
-                      '鹿児島県' => '鹿児島県',
-                      '沖縄県' => '沖縄県',
-                      ),
+                      Input::post('entry_prefecture'),
+                      PREFECTURE,
                       array(
                         'class' => 'custom-select',
-                      ),
+                      )
                     );      
                   ?>
-                  <!-- <div class="invalid-feedback">必須項目です。</div> -->
                   </div>
                 </div>
-                <div class="col-6 col-lg-8">
+                <div class="col-12 col-lg-8">
                   <label for="address" class="entry-form__ttl">住所</label>
                  	<?php echo Form::input('entry_address', Input::post('entry_address'),array('class'=>'form-control')); ?>
-                  <!-- <div class="invalid-feedback">必須項目です。</div> -->
                 </div>
               </div>
             </div>
@@ -157,15 +100,15 @@
             <div class="entry-form__item">
               <h3 class="entry-form__ttl">電話番号</h3>
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-4">
                  	<?php echo Form::input('entry_telephone_h', Input::post('entry_telephone_h'),array('class'=>'form-control')); ?>
                   <!-- <div class="invalid-feedback">必須項目です。</div> -->
                 </div>
-                <div class="col-md-4">
+                <div class="col-4">
                  	<?php echo Form::input('entry_telephone_m', Input::post('entry_telephone_m'),array('class'=>'form-control')); ?>
                   <!-- <div class="invalid-feedback">必須項目です。</div> -->
                 </div>
-                <div class="col-md-4">
+                <div class="col-4">
                  	<?php echo Form::input('entry_telephone_l', Input::post('entry_telephone_l'),array('class'=>'form-control')); ?>
                   <!-- <div class="iz1nvalid-feedback">必須項目です。</div> -->
                 </div>
@@ -182,46 +125,39 @@
             <div class="entry-form__item">
               <h3 class="entry-form__ttl">メルマガ</h3>
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-6 col-md-4">
                   <label for="entry_magazine">メルマガの購読</label>
                   <?php
                     echo Form::select(
                       'entry_magazine', 
-                      '---',
+                      Input::post('entry_magazine'),
+                      MAGAZINE,
                       array(
-                        '' => '---',
-                        '0' => '不要',
-                        '1' => '購読',
-                      ),
-                      array(
-                        'id' => 'entry_magazine',
+                        'id' => 'entry_magazine entry_magazine--select',
                         'class'=>'custom-select',
-                      ),
+                      )
                     );      
                   ?>
                   <!-- <div class="invalid-feedback">必須項目です。</div> -->
                 </div>
-                <div class="col-md-4">
+                <div class="col-6 col-md-4">
                   <label for="entry_magazine_type">メルマガのタイプ</label>
                   <?php
                     echo Form::select(
                       'entry_magazine_type', 
-                      '---',
+                      Input::post('entry_magazine_type'),
+                      MAGAZINE_TYPE,
                       array(
-                        '' => '---',
-                        '0' => 'PC向け',
-                        '1' => 'モバイル向け',
-                      ),
-                      array(
-                        'id' => 'entrymagazine-type',
+                        'id' => 'entry_magazine_type entry_magazine_type--select',
                         'class'=>'custom-select',
-                      ),
+                      )
                     );      
                   ?>
                   <!-- <div class="invalid-feedback">必須項目です。</div> -->
                 </div>
               </div>
             </div>
+					  <?php echo Form::hidden('entry_birthday',Input::post('entry_birthday'),array('id'=>'entry_birthday'));?>
             <button id="send" class="mt-5 btn btn-primary btn-block" type="submit">確認画面へ</button>
           </div>
           <?php echo Form::close(); ?>

@@ -20,9 +20,9 @@
             <!-- 住所 -->
             <div class="entry-form__item">
               <div class="row">
-                <div class="col-6 col-lg-4">
-                  <label for="address-level1" class="entry-form__ttl"><?php echo $input['entry_prefecture']; ?></label>
-                  <p class="entry-form__txt"><?php echo $input['entry_address']; ?></p>
+                <div class="col">
+                  <label for="address-level1" class="entry-form__ttl">住所</label>
+                  <p class="entry-form__txt"><?php echo PREFECTURE[$input['entry_prefecture']]; ?><?php echo $input['entry_address']; ?></p>
                 </div>
               </div>
             </div>
@@ -47,7 +47,11 @@
               <h3 class="entry-form__ttl">メルマガ</h3>
               <div class="row">
                 <div class="col-md-4">
-                  <p class="entry-form__txt"><?php echo $input['entry_magazine']; ?> <?php echo $input['entry_magazine_type']; ?></p>
+                  <p class="entry-form__txt"><?php echo MAGAZINE[$input['entry_magazine']]; ?> 
+                  <?php if($input['entry_magazine'] == 1) :?>
+                  (<?php echo MAGAZINE_TYPE[$input['entry_magazine_type']]; ?>)
+                  <?php endif; ?>
+                  </p>
                 </div>
               </div>
             </div>
@@ -74,20 +78,20 @@
                 <div class="col-6">
 								  <?php echo Form::open('entry/send'); ?>
 									  <?php echo Form::csrf(); ?>
-									  <?php echo Form::hidden('entry_name',$input['entry_name'],array('id' => 'entry_name')); ?>
-									  <?php echo Form::hidden('entry_ruby',$input['entry_ruby'],array('id' => 'entry_ruby')); ?>
+									  <?php echo Form::hidden('entry_name',$input['entry_name']); ?>
+									  <?php echo Form::hidden('entry_ruby',$input['entry_ruby']); ?>
 										<?php echo Form::hidden('year',$input['year']);?>
 									  <?php echo Form::hidden('month',$input['month']);?>
 									  <?php echo Form::hidden('date',$input['date']);?>
+                    <?php echo Form::hidden('entry_birthday',$input['entry_birthday']);?>
 									  <?php echo Form::hidden('entry_prefecture',$input['entry_prefecture']);?>
 									  <?php echo Form::hidden('entry_address',$input['entry_address']);?>
 									  <?php echo Form::hidden('entry_telephone_h',$input['entry_telephone_h']);?>
 									  <?php echo Form::hidden('entry_telephone_m',$input['entry_telephone_m']);?>
 									  <?php echo Form::hidden('entry_telephone_l',$input['entry_telephone_l']);?>
 									  <?php echo Form::hidden('entry_email',$input['entry_email']);?>
-									  <?php echo Form::hidden('entry_magazine',$input['entry_magazine']);?>
-									  <?php echo Form::hidden('entry_magazine_type',$input['entry_magazine_type']);?>
-									  <?php echo Form::hidden('entry_ruby',$input['entry_ruby']);?>
+									  <?php echo Form::hidden('entry_magazine',$input['entry_magazine'],array('id' => 'entry_magazine--select'));?>
+									  <?php echo Form::hidden('entry_magazine_type',$input['entry_magazine_type'],array('id' => 'entry_magazine_type--select'));?>
                     <button id="send" class="mt-5 btn btn-primary btn-block" type="submit">投稿</button>
 									<?php echo Form::close(); ?>
                 </div>

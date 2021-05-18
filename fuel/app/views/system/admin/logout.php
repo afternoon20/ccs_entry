@@ -1,0 +1,1 @@
+<?php echo Html::anchor('/system/admin', 'トップへ戻る', array('class' => 'btn btn-primary'),); ?>

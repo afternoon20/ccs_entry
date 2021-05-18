@@ -21,19 +21,5 @@
  */
 
 return array(
-    'default' => array(
-        'type'        => 'pdo',
-        'connection'  => array(
-            // 'dsn'        => 'mysql:host=localhost;dbname=fuel_ccs;charset=utf8;charset=utf8;unix_socket=/var/lib/mysql/mysql.sock',
-            // 'username'   => 'username',
-            // 'password'   => 'password',
-            'persistent' => false,
-            'compress'       => false,
-        ),
-        'identifier'   => '`',
-        'table_prefix' => '',
-        'charset'      => 'utf8',
-        'enable_cache' => false,
-        'profiling'    => false,
-    ),
+    
 );

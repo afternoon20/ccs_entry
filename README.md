@@ -7,17 +7,18 @@
 - FuelPHP: 1.8.2
 - Apache 2.4.6
 - MySQL 8.0.23
+- MAMP 5.7
 
 ## 実装に費やした時間
 
 作業後に更新する。
 
 - 事前学習 15h
-- エントリーページ実装 10h
+- エントリーページ実装 15h
 - 管理ページ
-  - トップページ 5h
+  - トップページ 7h
   - エントリー一覧 5h
-  - 管理者ページ 0h
+  - 管理者ページ 3h
 
 ## 実装中に問題となったこと・工夫したところ
 
@@ -39,3 +40,4 @@
 - 初めてのフレームワークとしての FuelPHP 改訂版
 - [CodeIgniter3 を使ってる環境を PHP7.4 にしたらエラーが出た](https://lightwill.hatenablog.com/entry/2020/09/11/151914)
 - [FuelPHP の認証機能「Auth パッケージ」を利用してみる](https://helog.jp/framework/fuelphp-auth/)
+- [jQuery を使用して 閏年判定付き 生年月日フォーム をつくってみた](https://qiita.com/Haruka-Ogawa/items/ee6571a1331f9ea00688)

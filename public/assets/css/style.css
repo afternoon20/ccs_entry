@@ -2,7 +2,8 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-h3, p {
+h3,
+p {
   margin: 0;
   padding: 0;
 }
@@ -256,4 +257,9 @@ li {
   .inner {
     padding: 0 8px;
   }
+}
+
+.form-control,
+.custom-select {
+  font-size: inherit;
 }

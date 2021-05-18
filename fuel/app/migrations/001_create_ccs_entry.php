@@ -8,7 +8,6 @@ class Create_ccs_entry
 	{
 		\DBUtil::create_table('ccs_entry', array(
 			'entry_id' => array('type' => 'int', 'unsigned' => true, 'null' => false, 'auto_increment' => true, 'constraint' => '11'),
-			// 'entry_id' => array('constraint' => '11', 'null' => false, 'type' => 'int'),
 			'entry_name' => array('constraint' => 40, 'null' => false, 'type' => 'varchar'),
 			'entry_ruby' => array('constraint' => 40, 'null' => false, 'type' => 'varchar'),
 			'entry_birthday' => array('null' => false, 'type' => 'double','default' => 0),
@@ -21,9 +20,9 @@ class Create_ccs_entry
 			'entry_magazine' => array('null' => false, 'type' => 'smallint','default' => 0),
 			'entry_magazine_type' => array('null' => false, 'type' => 'smallint','default' => 0),
 			'entry_transfer' => array('null' => false, 'type' => 'smallint','default' => 0),
-			'entry_magazine_type' => array('null' => false, 'type' => 'smallint','default' => 0),
+			'entry_magazine_type' => array('null' => true, 'type' => 'smallint','default' => 0),
 			'entry_transfer' => array('null' => false, 'type' => 'smallint','default' => 0),
-			'entry_register_time' => array('constraint' => '11', 'null' => false, 'type' => 'int', 'unsigned' => true),
+			'entry_register_time' => array('constraint' => '11', 'null' => false, 'type' => 'bouble', 'unsigned' => false),
 		), array('entry_id'));
 	}
 

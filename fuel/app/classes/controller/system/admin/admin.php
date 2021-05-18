@@ -1,28 +1,27 @@
 <?php
 
-class Controller_System_Admin_Admin extends Controller_Template
+class Controller_System_Admin_Admin extends Controller_System_Base
 {
-	public $template = 'system/template_system';
 
 	public function action_index()
 	{
-		$data["subnav"] = array('index'=> 'active' );
-		$this->template->title = 'Admin';
-		$this->template->content = View::forge('systemadmin/index', $data);
+		$data['users']= Model_Admin::find_all();
+		$this->template->title = '管理者一覧';
+		$this->template->content = View::forge('system/admin/index',$data);
 	}
 
-	public function action_edit()
-	{
-		$data["subnav"] = array('edit'=> 'active' );
-		$this->template->title = 'Admin &raquo; Edit';
-		$this->template->content = View::forge('admin/edit', $data);
-	}
+	// public function action_edit()
+	// {
+	// 	$data["subnav"] = array('edit'=> 'active' );
+	// 	$this->template->title = 'Admin &raquo; Edit';
+	// 	$this->template->content = View::forge('admin/edit', $data);
+	// }
 
-	public function action_delete()
-	{
-		$data["subnav"] = array('delete'=> 'active' );
-		$this->template->title = 'Admin &raquo; Delete';
-		$this->template->content = View::forge('admin/delete', $data);
-	}
+	// public function action_delete()
+	// {
+	// 	$data["subnav"] = array('delete'=> 'active' );
+	// 	$this->template->title = 'Admin &raquo; Delete';
+	// 	$this->template->content = View::forge('admin/delete', $data);
+	// }
 
 }

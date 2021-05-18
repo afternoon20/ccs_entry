@@ -1,35 +1,45 @@
 <?php
 
-use Fuel\Core\Controller_Template;
+use Fuel\Core\Input;
 
 class Controller_Entry extends Controller_Template{
 
 	public function action_index()
 	{
-		$this->template->title = 'エントリーフォーム';
-		$this->template->content = View::forge('entry/index');
+		if(Input::method() == 'GET')
+		{
+			$this->template->title = 'エントリーフォーム';
+			$this->template->content = View::forge('entry/index');
+
+		} elseif(Input::method() == 'POST'){
+			$val = $this->forge_validation();
 		
+			if ($val->run())
+			{
+				$data['input'] = $val->validated();
+			
+				// 実行されず
+				// Response::redirect('entry/comfirm',$data);
+
+				// リダイレクトするが値を渡せない
+				// Response::redirect('entry/comfirm');
+
+				//URLがentry/indexになる
+				$this->action_comfirm($data);
+			}else{
+				$this->template->title = 'エントリーフォーム(エラー)';
+				$this->template->content = View::forge('entry/index');
+				$this->template->content->set_safe('html_error', $val->show_errors());
+			}
+		}
 	}
 
-	public function action_confirm()
+	public function action_comfirm($data)
+	// public function action_comfirm()
 	{
-		$val = $this->forge_validation();
-		
-		if ($val->run())
-		{
-			$data['input'] = $val->validated();
-			$this->template->title = '確認画面';
-			$this->template->content = View::forge('entry/confirm',$data);
-
-		}
-		else
-		{
-    	$this->template->title = 'エントリーフォーム(エラー)';
-			$this->template->content = View::forge('entry/index');
-			$this->template->content->set_safe('html_error', $val->show_errors());
-			// var_dump();
-		}
-		
+		var_dump($data);
+		$this->template->title = '確認画面';
+		$this->template->content = View::forge('entry/confirm',$data);
 	}
 
 	public function action_send()
@@ -37,7 +47,6 @@ class Controller_Entry extends Controller_Template{
 		// CSRF対策
 		if ( ! Security::check_token())
 		{
-			//throw new HttpInvalidInputException('ページ遷移が正しくありません');
 			$this->template->title = '不正な操作がありました。最初からやり直してください。';
 			$this->template->content = View::forge('entry/404');
 			return;
@@ -60,6 +69,10 @@ class Controller_Entry extends Controller_Template{
       $form['entry_name'] = Input::post('entry_name');
       $form['entry_ruby'] = Input::post('entry_ruby');
 			// TODO:誕生日の処理
+			$birthday = new DateTime(Input::post('entry_birthday'));
+			$birthday = intval($birthday->format('U'));
+      $form['entry_birthday'] = $birthday;
+			
       $form['entry_prefecture'] = intval(Input::post('entry_prefecture'));
       $form['entry_address'] = Input::post('entry_address');
       $form['entry_telephone_h'] = Input::post('entry_telephone_h');
@@ -84,10 +97,11 @@ class Controller_Entry extends Controller_Template{
 		}	
 	}
 
-		// 検証ルールの定義
+	// 検証ルールの定義
 	public function forge_validation()
 	{
 		$val = Validation::forge();
+		$val -> add_callable('Validation_MyValidation');
 		
 		$val->add('entry_name', '名前')
 			->add_rule('trim')
@@ -97,6 +111,7 @@ class Controller_Entry extends Controller_Template{
 		$val->add('entry_ruby', 'ふりがな')
 			->add_rule('trim')
 			->add_rule('required')
+			->add_rule('kana')
 			->add_rule('max_length', 40);
 		
 		$val->add('year', '年')
@@ -111,10 +126,14 @@ class Controller_Entry extends Controller_Template{
 			->add_rule('trim')
 			->add_rule('required');
 		
+		$val->add('entry_birthday', '生年月日')
+			->add_rule('valid_date','Y-m-d');
+			
+		
 		$val->add('entry_prefecture', '都道府県')
 			->add_rule('trim')
 			->add_rule('required')
-			->add_rule('numeric_max', 47);
+			->add_rule('numeric_max', 48);
 
 
 		$val->add('entry_address', '住所')
@@ -136,20 +155,23 @@ class Controller_Entry extends Controller_Template{
 			->add_rule('trim')
 			->add_rule('required')
 			->add_rule('max_length', 4);
-
 		
 		$val->add('entry_email', 'メールアドレス')
 			->add_rule('trim')
 			->add_rule('required')
+			->add_rule('valid_email')
+			->add_rule('valid_emails')
 			->add_rule('max_length', 255);
 		
-		$val->add('entry_magazine', 'メルマガ購読')
+		$val->add('entry_magazine', 'メルマガの購読')
 			->add_rule('trim')
 			->add_rule('required');
 		
 		$val->add('entry_magazine_type', 'メルマガのタイプ')
 			->add_rule('trim')
+			->add_rule('magazine_type')
 			->add_rule('numeric_max', 1);
+
 		
 		return $val;
 	}
