@@ -26,7 +26,7 @@ return array(
 	'numeric_max'     => 'The maximum numeric value of :label must be :param:1',
 	'numeric_between' => 'The field :label must contain a numeric value between :param:1 and :param:2',
 	'valid_string'    => 'The valid string rule :rule(:param:1) failed for field :label',
-	'required_with'   => 'The field :label must contain a value if :param:1 contains a value.',
+	'required_with'   => ':labelを入力する場合は:param:1の入力が必須です。',
 	'valid_date'      => ':labelに不正な生年月日が含まれています。',
 	'magazine_type'		=> '購読する場合は、購読タイプを選択してください。',
 	'kana'						=> ':labelはひらがなのみ入力できます。',

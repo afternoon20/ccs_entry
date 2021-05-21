@@ -23,22 +23,8 @@ class Controller_System_Admin extends Controller_System_Base
 			echo '失敗<br>';
 			echo Input::post('username').'<br>'.Input::post('password');
 			exit;
-	    // }
     }
 	}
-
-	public function get_password()
-	{
-		$this->template->title = 'パスワードハッシュ化';
-		$this->template->content = View::forge('system/admin/password');
-	}
-
-	public function action_register()
-	{
-		$this->template->title = 'エントリー削除画面';
-		$this->template->content = View::forge('admin/delete', $data);
-	}
-
 	public function action_logout()
 	{
 		Auth::logout();

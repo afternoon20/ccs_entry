@@ -23,11 +23,11 @@
     <header class="header shadow-sm">
       <div class="inner">
         <nav class="navbar navbar-light">
-          <span class="navbar-brand">Career Change Service System</span>
+          <span class="navbar-brand">  <?php echo Html::anchor('/system/admin', 'Career Change Service System'); ?></span>
           <div class="navbar-left">
             <?php if (Auth::check()) :?>
             <?php echo Form::open(array('action' => 'system/admin/logout','class'=>'form-inline')); ?>
-              <p class="mr-lg-3">ログインユーザー：<?php //echo Auth::get_profile_fields() ?></p>
+              <p class="mr-lg-3">ログインユーザー：<?php echo Auth::get('login_nickname') ?></p>
               <button class="btn btn-outline-primary" type="submit">ログアウト</button>
             <?php echo Form::close(); ?>
             <?php endif; ?>

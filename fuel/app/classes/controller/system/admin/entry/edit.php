@@ -64,7 +64,6 @@ class Controller_System_Admin_Entry_Edit extends Controller_System_Base
         $entry->save();
 				Response::redirect("system/admin/entry/edit?entry_id=".$entry_id);
 
-        
       } catch(Exception $e){
 				echo $e;
 			  exit;
@@ -79,9 +78,9 @@ class Controller_System_Admin_Entry_Edit extends Controller_System_Base
 
     // CSRF対策
 		if ( ! Security::check_token()){
-			  $this->template->title = '不正な操作がありました。最初からやり直してください。';
-			  $this->template->content = View::forge('system/404');
-			  return;
+			$this->template->title = '不正な操作がありました。最初からやり直してください。';
+			$this->template->content = View::forge('system/404');
+			return;
 		}
 
 		  $val = $this->forge_validation();
@@ -96,9 +95,6 @@ class Controller_System_Admin_Entry_Edit extends Controller_System_Base
 		  }
 
       try{
-
-				exit;
-
         // データベース更新
 
         $entry['entry_name'] = Input::post('entry_name');
@@ -126,7 +122,6 @@ class Controller_System_Admin_Entry_Edit extends Controller_System_Base
 
         $entry->save();
         Response::redirect('system/admin/entry/edit?entry_id='.$entry_id);
-
 
       } catch(Exception $e){
         echo $e;

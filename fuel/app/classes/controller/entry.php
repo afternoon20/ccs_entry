@@ -37,7 +37,6 @@ class Controller_Entry extends Controller_Template{
 	public function action_comfirm($data)
 	// public function action_comfirm()
 	{
-		var_dump($data);
 		$this->template->title = '確認画面';
 		$this->template->content = View::forge('entry/confirm',$data);
 	}
@@ -172,8 +171,6 @@ class Controller_Entry extends Controller_Template{
 			->add_rule('magazine_type')
 			->add_rule('numeric_max', 1);
 
-		
 		return $val;
 	}
-
 }

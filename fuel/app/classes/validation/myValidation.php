@@ -2,10 +2,8 @@
 
 class Validation_MyValidation
 {
-
   // マガジン購入する場合のマガジンタイプチェック
   public static function _validation_magazine_type($val){
-
     $input = Validation::active()->input();
     $magazine =$input['entry_magazine'];
     $magazine_type = $input['entry_magazine_type'];

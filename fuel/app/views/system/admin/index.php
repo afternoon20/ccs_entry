@@ -17,9 +17,9 @@
     <tr>
       <td class="align-middle" scope="row"><?php echo $user['id']?></td>
       <td class="align-middle"><?php echo $user['username']?></td>
-      <td class="align-middle"><?php echo '有効'//$user['ここに有効/無効']?></td>
+      <td class="align-middle"><?php echo STATUS[$user['login_status']]?></td>
       <td class="align-middle text-center"><?php echo Html::anchor('system/admin/admin/edit?admin_id='.$user['id'], '編集',array('class' => 'btn btn-primary btn-sm text-center'));?></td>
-      <td class="align-middle text-center"><?php echo Html::anchor('#', '削除',array('class' => 'btn btn-danger btn-sm text-center'));?></td>
+      <td class="align-middle text-center"><?php echo Html::anchor('system/admin/admin/delete?admin_id='.$user['id'], '削除',array('class' => 'btn btn-danger btn-sm text-center'));?></td>
     </tr>
     <?php endforeach; ?>
   </tbody>

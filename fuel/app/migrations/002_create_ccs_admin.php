@@ -2,6 +2,7 @@
 
 namespace Fuel\Migrations;
 
+// 使用しないデフォルトのカラム以外は手動で追加
 class Create_ccs_admin
 {
 	public function up()

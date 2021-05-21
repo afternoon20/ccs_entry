@@ -127,3 +127,9 @@ for($i=1; $i<=59; $i++){
 }
 
 define('SECONDS',$seconds);
+
+// ログインステータス
+define('STATUS',[
+  '0' => '無効',
+  '1' => '有効',
+]);

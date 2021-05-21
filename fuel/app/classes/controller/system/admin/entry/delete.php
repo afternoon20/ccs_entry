@@ -15,7 +15,6 @@ class Controller_System_Admin_Entry_Delete extends Controller_System_Base
 	public function action_completed()
 	{
 		$entry_id = Input::post('entry_id');
-		// 'id'で探しているためエラー
     $entry = Model_Entry::find_by_pk($entry_id);
  
     if($entry){
